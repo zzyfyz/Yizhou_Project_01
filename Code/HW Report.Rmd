@@ -27,6 +27,7 @@ head(IQ)
 boxplot(IQ~Smelter,data=IQ)
 
 ```
+
 ## QB. At least one nicely formatted table
 
 ```{r}
