@@ -1,0 +1,51 @@
+---
+title: 'BIOS 6621 HW Report'
+author: "Yizhou Fei"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 7
+    fig_height: 6
+    fig_crop: false
+---
+
+```{r, include=F}
+
+
+library(knitr)
+library(ggplot2)
+opts_chunk$set(tidy = F)
+```
+
+## QA. A graph showing the IQ levels by location status
+
+
+```{r}
+IQ <- read.csv(file = 'D:/yizhou/CU/BIOS 6621/W5/lead-iq-01.csv')
+head(IQ)
+boxplot(IQ~Smelter,data=IQ)
+
+```
+## QB. At least one nicely formatted table
+
+```{r}
+library(knitr)
+library(dplyr)
+library(tidyr)
+summary <-IQ  %>% group_by(Smelter) %>% 
+  summarise_at(vars(IQ), list(Mean = mean,Sd = sd, Median = median, Min = min, Max = max))
+kable(summary,digits = 2, caption = "Summary statistics of IQ by Location")
+
+```
+
+## QC. A couple sentences of text (not on the graph, but in the body of the Rmarkdown document) describing the graph and the table
+
+The boxplot shows an outlier in group Far. As shown in the summary table, the mean in Far group is larger than Near group and the variability is also much larger.
+
+## QD. In-line calculations giving the values of the means, that will be updated if the data are changed, and
+
+```{r}
+mean <- mean(IQ$IQ)
+print(mean)
+```
