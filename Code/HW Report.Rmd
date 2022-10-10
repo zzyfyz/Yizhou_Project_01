@@ -24,6 +24,8 @@ opts_chunk$set(tidy = F)
 ```{r}
 IQ <- read.csv(file = 'D:/yizhou/CU/BIOS 6621/W5/lead-iq-01.csv')
 head(IQ)
+IQ$IQ<-ifelse(IQ$IQ==999,99,IQ$IQ) #change 999 to 99
+
 boxplot(IQ~Smelter,data=IQ)
 
 ```
